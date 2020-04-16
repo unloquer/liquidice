@@ -43,6 +43,7 @@ bot.on('message', (msg) => {
 
   let rawjson = fs.readFileSync('datos.json');
   let parsedjson = JSON.parse(rawjson);
+
   let obj = {
     message_id: msg.message_id,
     from_id: msg.from.id,
@@ -97,17 +98,12 @@ bot.on('message', (msg) => {
                 var fileUrl = urlFile + data.result.file_path;
                 download(fileUrl).then(data => {
                     fs.writeFileSync(darStringArchivo(carpeta, ext), data);
-<<<<<<< HEAD
-                    if(carpeta == 'audio' || carpeta == 'video'){
-//                        var play = spawn('cvlc', ['--no-video', './' + darStringArchivo(carpeta, ext)]);
-=======
                     if(carpeta == 'audio' && msg.voice.file_size < 57000){
-                        pendientes.push('./' + darStringArchivo(carpeta, ext));
+                        pendientes.push('audio/off/' + darStringArchivo(carpeta, ext));
                         if(!sonando){
-                            reproducirStream();
+//                            reproducirStream();
                         }
->>>>>>> 1851462a661e182422d5473f72c172ff5211496d
-                        bot.sendMessage(chatId, 'se fue al streaming en vivo');
+                        bot.sendMessage(chatId, 'se fue al directorio audio');
                     }
                     obj.file = darStringArchivo(carpeta, ext);
                     parsedjson.push(obj);

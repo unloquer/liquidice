@@ -1,6 +1,6 @@
 foto/
 video/
-audio/
+audio/*.oga
 texto/
 
 secret.js
